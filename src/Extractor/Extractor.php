@@ -2,18 +2,34 @@
 
 namespace RemoteRepository\Extractor;
 
+use RemoteRepository\Extractor\Exception\ExtractorException;
+
 abstract class Extractor
 {
     protected ?self $next;
 
-    public function __construct(?self $next = null)
+    protected bool $nullOnException;
+
+    public function __construct(?self $next = null, bool $nullOnException = true)
     {
+        $this->nullOnException = $nullOnException;
         $this->next = $next;
     }
 
+    /**
+     * @throws ExtractorException
+     */
     final public function extract($data)
     {
-        $data = $this->process($data);
+        try {
+            $data = $this->process($data);
+        } catch (ExtractorException $e) {
+            if ($this->nullOnException) {
+                return null;
+            }
+
+            throw $e;
+        }
 
         if ($this->next !== null) {
             return $this->next->extract($data);
@@ -22,5 +38,8 @@ abstract class Extractor
         return $data;
     }
 
-    abstract function process($data);
+    /**
+     * @throws ExtractorException
+     */
+    abstract protected function process($data);
 }
