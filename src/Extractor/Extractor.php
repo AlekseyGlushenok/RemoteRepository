@@ -1,13 +1,10 @@
 <?php
 
-
 namespace RemoteRepository\Extractor;
 
-use RemoteRepository\Extractor\Contracts\Extractor as ExtractorInterface;
-
-abstract class Extractor implements ExtractorInterface
+abstract class Extractor
 {
-    protected ExtractorInterface $next;
+    protected self $next;
 
     final public function extract($data)
     {
