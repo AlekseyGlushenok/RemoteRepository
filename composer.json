@@ -1,0 +1,20 @@
+{
+    "name": "aleksey/remote-repository",
+    "type": "library",
+    "description": "empty yet",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aleksey",
+            "email": "glushenok32@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "RemoteRepository\\": "src"
+        }
+    }
+}
