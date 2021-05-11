@@ -4,7 +4,12 @@ namespace RemoteRepository\Extractor;
 
 abstract class Extractor
 {
-    protected self $next;
+    protected ?self $next;
+
+    public function __construct(?self $next = null)
+    {
+        $this->next = $next;
+    }
 
     final public function extract($data)
     {
