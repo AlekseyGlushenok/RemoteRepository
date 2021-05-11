@@ -10,11 +10,16 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.3"
+        "guzzlehttp/guzzle": "^7.3",
+        "ext-json": "^7.4"
     },
     "autoload": {
         "psr-4": {
-            "RemoteRepository\\": "src"
+            "RemoteRepository\\": "src",
+            "RemoteRepository\\Test\\": "test"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }
